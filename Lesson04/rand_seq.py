@@ -8,17 +8,27 @@
 # When creating sequences, append and join
 # Command line:
 #	python3 rand_seq.py <# of seqs> <min> <max> <gc>
-
+# do plotting
 import sys
 import random
 
-output = 0
 seq_num = int(sys.argv[1])
 min_len = int(sys.argv[2])
 max_len = int(sys.argv[3])
 gc_cont = float(sys.argv[4])
+
+
+assert(seq_num > 0)
+assert(min_len > 0)
+assert(max_len > 0)
+assert(gc_cont > 0 and gc_cont < 1)
+
+
+output = 0
 nt = ['A', 'C', 'G', 'T']
 weights = [(1-gc_cont)/2, gc_cont/2, gc_cont/2, (1-gc_cont)/2]
+
+
 
 for seq in range(seq_num): 
 	print('{}{}'.format('>seq-',seq))

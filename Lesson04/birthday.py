@@ -12,20 +12,32 @@
 import random 
 import sys
 
+# bootstrapping, resampling : do an average of averages: plot, central limit theorm
+# try to generate a plot 
+
 output = 0
+bins = int(sys.argv[1])
 trials = int(sys.argv[2])
 people = int(sys.argv[3])
-bins = int(sys.argv[1])
+
+# resampling parameter
+
+# assert statements
+assert(trials > 0)
+assert(people > 0)
+assert(bins > 0)
+
 
 for trial in range(trials):
-	birthdays = {} 
+	birthdays = [0]*bins # made bday into key instead of person so easier to search
+	#print(len(birthdays))
 	for person in range(people):
-		bday = random.randint(1, bins+1)
-		if(bday in birthdays):
+		bday = random.randint(0, bins-1)
+		#print(bday)
+		birthdays[bday] += 1
+		if birthdays[bday] > 1:
 			output += 1
 			break
-		else:
-			birthdays[bday] = person
 	
 print(output/trials)
 

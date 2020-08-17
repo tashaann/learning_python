@@ -23,21 +23,21 @@ assert(min_len > 0)
 assert(max_len > 0)
 assert(gc_cont > 0 and gc_cont < 1)
 
+# check if generating length = 0
+# fix length prob.
 
 output = 0
 nt = ['A', 'C', 'G', 'T']
 weights = [(1-gc_cont)/2, gc_cont/2, gc_cont/2, (1-gc_cont)/2]
-
-
 
 for seq in range(seq_num): 
 	print('{}{}'.format('>seq-',seq))
 	seq_len = random.randint(min_len, max_len)
 	seq_list = []
 	seq_str = ''
-	for nt_num in range(seq_len+1):
-		if nt_num == seq_len: print(seq_str)
-		elif nt_num < seq_len: 
+	for nt_num in range(seq_len):
+		if nt_num == seq_len-1: print(seq_str)
+		elif nt_num < seq_len-1: 
 			#this only give you a list so then had to convert list to string
 			seq_list+=random.choices(nt, weights) 
 			seq_str += seq_list[nt_num]
